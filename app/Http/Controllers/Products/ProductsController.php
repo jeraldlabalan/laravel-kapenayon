@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product\Product;
 use App\Models\Product\Cart;
+use App\Models\Product\Order;
 use Auth; // Import the Auth facade for user authentication
 use Redirect; // Import the Redirect facade for redirection
 use Session; // Import the Session facade for session management
+
 
 class ProductsController extends Controller
 {
@@ -92,9 +94,21 @@ class ProductsController extends Controller
 
     public function checkout()
     {
-        echo "Checkout page is under construction. Please check back later.";
 
 
+        return view('products.checkout');
+
+    }
+
+
+
+     public function storeCheckout(Request $request)
+    {
+        $checkOut = Order::create($request->all());
+
+        echo "welcome to checkout";
+
+        //return Redirect::route('product.single', $id)->with(['success' => 'Product added to cart successfully!']);
     }
 
 }
