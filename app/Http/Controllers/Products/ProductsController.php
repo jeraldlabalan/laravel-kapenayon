@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Products;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product\Product;
+use App\Models\Product\Cart;
+use Auth; // Import the Auth facade for user authentication
+use Redirect; // Import the Redirect facade for redirection
 
 class ProductsController extends Controller
 {
@@ -24,4 +27,19 @@ class ProductsController extends Controller
         // Return the view with the product data
         return view('products.productsingle', compact('product', 'relatedProducts'));
     }
+
+    // This method handles adding a product to the cart
+    public function addCart(Request $request, $id)
+    {
+        $addCart = Cart::create([
+            'product_id' => $request->product_id,
+            'name' => $request->name,
+            'price' => $request->price,
+            'image' => $request->image,
+            'user_id' => Auth::user()->id,
+        ]);
+
+        return Redirect::route('product.single', $id)->with(['success' => 'Product added to cart successfully!']);
+    }
+
 }
