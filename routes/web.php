@@ -16,3 +16,7 @@ Route::get('products/product-single/{id}', [App\Http\Controllers\Products\Produc
 
 // Add to Cart Route
 Route::post('products/product-single/{id}', [App\Http\Controllers\Products\ProductsController::class, 'addCart'])->name('add.cart');
+
+// Cart Page Route
+Route::get('products/cart', [App\Http\Controllers\Products\ProductsController::class, 'cart'])->name('cart');
+

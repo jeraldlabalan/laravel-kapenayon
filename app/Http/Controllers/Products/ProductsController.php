@@ -46,4 +46,14 @@ class ProductsController extends Controller
         return Redirect::route('product.single', $id)->with(['success' => 'Product added to cart successfully!']);
     }
 
+    // This method retrieves the user's cart
+    public function cart()
+    {
+        $cartProducts = Cart::where('user_id', Auth::user()->id)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('products.cart', compact('cartProducts'));
+    }
+
 }
