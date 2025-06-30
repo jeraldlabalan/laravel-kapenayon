@@ -19,6 +19,16 @@
       </div>
     </section>
 
+     {{-- Success Message --}}
+    @if(Session::has('delete'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> {{ Session::get('delete') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
 		<section class="ftco-section ftco-cart">
 			<div class="container">
 				<div class="row">
@@ -39,7 +49,7 @@
 
                             @foreach ($cartProducts as $cartProduct)
                                 <tr class="text-center">
-						        <td class="product-remove"><a href="#"><span class="icon-close"></span></a></td>
+						        <td class="product-remove"><a href="{{ route('cart.product.delete', $cartProduct->product_id) }}"><span class="icon-close"></span></a></td>
 
 						        <td class="image-prod"><div class="img" style="background-image:url({{ asset('assets/images/'. $cartProduct->image . '') }});"></div></td>
 

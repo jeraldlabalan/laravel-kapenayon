@@ -20,3 +20,8 @@ Route::post('products/product-single/{id}', [App\Http\Controllers\Products\Produ
 // Cart Page Route
 Route::get('products/cart', [App\Http\Controllers\Products\ProductsController::class, 'cart'])->name('cart');
 
+// Delete Product from Cart Route
+Route::get('products/cart-delete/{id}', [App\Http\Controllers\Products\ProductsController::class, 'deleteProductCart'])->name('cart.product.delete');
+
+
+

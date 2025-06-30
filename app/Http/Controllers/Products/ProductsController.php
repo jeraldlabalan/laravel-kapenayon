@@ -56,4 +56,19 @@ class ProductsController extends Controller
         return view('products.cart', compact('cartProducts'));
     }
 
+    // This method deletes a product from the cart
+    public function deleteProductCart($id)
+    {
+        $deleteProductCart = Cart::where('product_id', $id)
+         ->where('user_id', Auth::user()->id);
+
+        $deleteProductCart->delete();
+
+        if($deleteProductCart)
+        {
+            return Redirect::route('cart')->with(['delete' => 'Product removed from cart successfully!']);
+        }
+
+    }
+
 }
