@@ -23,5 +23,8 @@ Route::get('products/cart', [App\Http\Controllers\Products\ProductsController::c
 // Delete Product from Cart Route
 Route::get('products/cart-delete/{id}', [App\Http\Controllers\Products\ProductsController::class, 'deleteProductCart'])->name('cart.product.delete');
 
+// Prepare Checkout Route
+Route::post('products/prepare-checkout', [App\Http\Controllers\Products\ProductsController::class, 'prepareCheckout'])->name('prepare.checkout');
 
 
+Route::get('products/checkout', [App\Http\Controllers\Products\ProductsController::class, 'checkout'])->name('checkout');

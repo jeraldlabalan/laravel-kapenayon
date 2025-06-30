@@ -8,6 +8,7 @@ use App\Models\Product\Product;
 use App\Models\Product\Cart;
 use Auth; // Import the Auth facade for user authentication
 use Redirect; // Import the Redirect facade for redirection
+use Session; // Import the Session facade for session management
 
 class ProductsController extends Controller
 {
@@ -71,6 +72,28 @@ class ProductsController extends Controller
         {
             return Redirect::route('cart')->with(['delete' => 'Product removed from cart successfully!']);
         }
+
+    }
+
+    // This method prepares the checkout process
+    public function prepareCheckout(Request $request)
+    {
+        $value = $request->price;
+
+        $price = Session::put('price', $value);
+
+        $newPrice = Session::get($price);
+
+        if($newPrice > 0)
+        {
+            return Redirect::route('checkout');
+        }
+    }
+
+    public function checkout()
+    {
+        echo "Checkout page is under construction. Please check back later.";
+
 
     }
 
