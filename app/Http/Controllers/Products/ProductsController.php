@@ -53,7 +53,10 @@ class ProductsController extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
-        return view('products.cart', compact('cartProducts'));
+        $totalPrice = Cart::where('user_id', Auth::user()->id)
+            ->sum('price');
+
+        return view('products.cart', compact('cartProducts', 'totalPrice'));
     }
 
     // This method deletes a product from the cart

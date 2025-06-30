@@ -47,8 +47,9 @@
 						    </thead>
 						    <tbody>
 
-                            @foreach ($cartProducts as $cartProduct)
-                                <tr class="text-center">
+                            @if ($cartProducts->count() > 0)
+                                @foreach ($cartProducts as $cartProduct)
+                            <tr class="text-center">
 						        <td class="product-remove"><a href="{{ route('cart.product.delete', $cartProduct->product_id) }}"><span class="icon-close"></span></a></td>
 
 						        <td class="image-prod"><div class="img" style="background-image:url({{ asset('assets/images/'. $cartProduct->image . '') }});"></div></td>
@@ -65,11 +66,16 @@
 					            </td>
 
 						        <td class="total">₱{{ $cartProduct->price }}</td>
-						      </tr><!-- END TR-->
+						    </tr><!-- END TR-->
                             @endforeach
 
+                            @else
+                                <tr>
+                                    <td colspan="6" class="text-center text-white">Your cart is empty.</td>
+                                </tr>
+                            @endif
 
-						    </tbody>
+                            </tbody>
 						  </table>
 					  </div>
     			</div>
@@ -77,32 +83,38 @@
     		<div class="row justify-content-end">
     			<div class="col col-lg-3 col-md-6 mt-5 cart-wrap ftco-animate">
     				<div class="cart-total mb-3">
-    					<h3 class="text-white">Cart Totals</h3>
+    					<h3 class="text-white">Cart Total</h3>
     					<p class="d-flex">
     						<span>Subtotal</span>
-    						<span>$20.60</span>
+    						<span>₱{{ number_format($totalPrice, 2) }}</span>
     					</p>
     					<p class="d-flex">
     						<span>Delivery</span>
-    						<span>$0.00</span>
+    						<span>₱0.00</span>
     					</p>
     					<p class="d-flex">
     						<span>Discount</span>
-    						<span>$3.00</span>
+    						<span>₱0</span>
     					</p>
     					<hr>
     					<p class="d-flex total-price">
     						<span>Total</span>
-    						<span>$17.60</span>
+    						<span>₱{{ number_format($totalPrice, 2) }}</span>
     					</p>
     				</div>
+
+                    @if($cartProducts->count() > 0)
     				<p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+                    @else
+
+                        <p class="text-center">Continue Shopping</p>
+                    @endif
     			</div>
     		</div>
 			</div>
 		</section>
 
-    <section class="ftco-section">
+    {{-- <section class="ftco-section">
     	<div class="container">
     		<div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 heading-section ftco-animate text-center">
@@ -158,6 +170,6 @@
         	</div>
         </div>
     	</div>
-    </section>
+    </section> --}}
 
 @endsection
