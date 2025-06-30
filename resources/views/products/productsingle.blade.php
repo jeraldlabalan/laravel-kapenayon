@@ -19,6 +19,16 @@
         </div>
     </section>
 
+    {{-- Success Message --}}
+    @if(Session::has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> {{ Session::get('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
     <section class="ftco-section">
         <div class="container">
             <div class="row">
@@ -65,26 +75,21 @@
                     </div>
                     <form method="POST" action="{{ route('add.cart', $product->id) }}">
                         @csrf
-                        <input type="text" value="{{ $product->id }}" name="product_id" id="">
-                        <input type="text" value="{{ $product->name }}" name="name" id="">
-                        <input type="text" value="{{ $product->price }}" name="price" id="">
-                        <input type="text" value="{{ $product->image }}" name="image" id="">
-                        <button type="submit" name="submit" class="btn btn-primary py-3 px-5">Add to Cart</button>
+                        <input type="hidden" value="{{ $product->id }}" name="product_id" id="">
+                        <input type="hidden" value="{{ $product->name }}" name="name" id="">
+                        <input type="hidden" value="{{ $product->price }}" name="price" id="">
+                        <input type="hidden" value="{{ $product->image }}" name="image" id="">
+
+                        @if($checkingInCart == 0)
+                            <button type="submit" name="submit" class="btn btn-primary py-3 px-5">Add to Cart</button>
+                        @else
+                            <button type="button" class="btn btn-secondary py-3 px-5" disabled>Already in Cart</button>
+                        @endif
                     </form>
                 </div>
             </div>
         </div>
     </section>
-
-    {{-- Success Message --}}
-    @if(Session::has('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success!</strong> {{ Session::get('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
 
     <section class="ftco-section">
         <div class="container">

@@ -24,8 +24,12 @@ class ProductsController extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
+
+            // Check if the product is already in the user's cart
+            $checkingInCart = Cart::where('product_id', $id)->where('user_id', Auth::user()->id)->count();
+
         // Return the view with the product data
-        return view('products.productsingle', compact('product', 'relatedProducts'));
+        return view('products.productsingle', compact('product', 'relatedProducts', 'checkingInCart'));
     }
 
     // This method handles adding a product to the cart
