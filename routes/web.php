@@ -26,7 +26,16 @@ Route::get('products/cart-delete/{id}', [App\Http\Controllers\Products\ProductsC
 // Prepare Checkout Route
 Route::post('products/prepare-checkout', [App\Http\Controllers\Products\ProductsController::class, 'prepareCheckout'])->name('prepare.checkout');
 
-
+// Checkout Page Route
 Route::get('products/checkout', [App\Http\Controllers\Products\ProductsController::class, 'checkout'])->name('checkout');
 
+// Process Checkout Route
 Route::post('products/checkout', [App\Http\Controllers\Products\ProductsController::class, 'storeCheckout'])->name('process.checkout');
+
+
+// Pay with PayPal Route
+Route::get('products/pay', [App\Http\Controllers\Products\ProductsController::class, 'payWithPaypal'])->name('products.pay');
+
+
+Route::get('products/success', [App\Http\Controllers\Products\ProductsController::class, 'success'])->name('products.pay.success');
+

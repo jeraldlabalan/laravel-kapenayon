@@ -14,7 +14,6 @@
                         <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Checout</span>
                         </p>
                     </div>
-
                 </div>
             </div>
         </div>

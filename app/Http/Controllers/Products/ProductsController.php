@@ -106,9 +106,29 @@ class ProductsController extends Controller
     {
         $checkOut = Order::create($request->all());
 
-        echo "welcome to checkout";
 
-        //return Redirect::route('product.single', $id)->with(['success' => 'Product added to cart successfully!']);
+        if($checkOut)
+        {
+            return Redirect::route('products.pay');
+        }
+    }
+
+    public function payWithPaypal()
+    {
+        return view('products.pay');
+    }
+
+    public function success()
+    {
+        $deleteItems = Cart::where('user_id', Auth::user()->id);
+        $deleteItems->delete();
+
+
+        if($deleteItems)
+        {
+            return view('products.success');
+        }
+
     }
 
 }
