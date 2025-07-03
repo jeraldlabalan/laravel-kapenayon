@@ -126,6 +126,8 @@ class ProductsController extends Controller
 
         if($deleteItems)
         {
+
+            Session::forget('price'); // Clear the session price
             return view('products.success');
         }
 
