@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\Product\Product;
 use App\Models\Product\Cart;
 use App\Models\Product\Order;
+use App\Models\Product\Booking;
 use Auth; // Import the Auth facade for user authentication
 use Redirect; // Import the Redirect facade for redirection
 use Session; // Import the Session facade for session management
+
 
 
 class ProductsController extends Controller
@@ -129,6 +131,23 @@ class ProductsController extends Controller
 
             Session::forget('price'); // Clear the session price
             return view('products.success');
+        }
+
+    }
+
+    public function bookTables(Request $request)
+    {
+        if($request->date > date('n/j/Y'))
+{
+            $bookTables = Booking::create($request->all());
+
+            if($bookTables)
+            {
+                return Redirect::route('home')->with(['booking' => 'Your table has been booked successfully!']);
+            }
+        } else {
+
+            return Redirect::route('home')->with(['date' => 'You cannot book a table for a date in the past!']);
         }
 
     }

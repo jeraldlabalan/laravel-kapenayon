@@ -32,10 +32,11 @@ Route::get('products/checkout', [App\Http\Controllers\Products\ProductsControlle
 // Process Checkout Route
 Route::post('products/checkout', [App\Http\Controllers\Products\ProductsController::class, 'storeCheckout'])->name('process.checkout')->middleware('check.for.price');
 
-
 // Pay with PayPal Route
 Route::get('products/pay', [App\Http\Controllers\Products\ProductsController::class, 'payWithPaypal'])->name('products.pay')->middleware('check.for.price');
 
-
+// Success Route after Payment
 Route::get('products/success', [App\Http\Controllers\Products\ProductsController::class, 'success'])->name('products.pay.success')->middleware('check.for.price');
 
+
+Route::post('products/booking', [App\Http\Controllers\Products\ProductsController::class, 'bookTables'])->name('booking.tables');
