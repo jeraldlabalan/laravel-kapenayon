@@ -137,8 +137,20 @@ class ProductsController extends Controller
 
     public function bookTables(Request $request)
     {
+        // Validate the request data
+        Request()->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'date' => 'required|date',
+            'time' => 'required|string|max:255',
+            'phone' => 'required|string|max:15',
+            'message' => 'nullable|string|max:500',
+            'user_id' => 'required|integer|exists:users,id', // Ensure user_id exists in users table
+        ]);
+
+
         if($request->date > date('n/j/Y'))
-{
+      {
             $bookTables = Booking::create($request->all());
 
             if($bookTables)

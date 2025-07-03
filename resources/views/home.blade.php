@@ -124,34 +124,68 @@
                         <div class="d-md-flex">
                             <div class="form-group">
                                 <input type="text" name="first_name" class="form-control" placeholder="First Name">
+                                @if ($errors->has('first_name'))
+                                    <span class="text-danger">{{ $errors->first('first_name') }}</span>
+                                @endif
                             </div>
+
+
+
+
                             <div class="form-group ml-md-4">
                                 <input type="text" name="last_name" class="form-control" placeholder="Last Name">
+                                @if ($errors->has('last_name'))
+                                    <span class="text-danger">{{ $errors->first('last_name') }}</span>
+                                @endif
                             </div>
+
+
+
                         </div>
                         <div class="d-md-flex">
                             <div class="form-group">
                                 <div class="input-wrap">
                                     <div class="icon"><span class="ion-md-calendar"></span></div>
-                                    <input type="text" name="date" class="form-control appointment_date" placeholder="Date">
+                                    <input type="text" name="date" class="form-control appointment_date"
+                                        placeholder="Date">
                                 </div>
+                                @if ($errors->has('date'))
+                                    <span class="text-danger">{{ $errors->first('date') }}</span>
+                                @endif
                             </div>
+
+
+
                             <div class="form-group ml-md-4">
                                 <div class="input-wrap">
                                     <div class="icon"><span class="ion-ios-clock"></span></div>
-                                    <input type="text" name="time" class="form-control appointment_time" placeholder="Time">
+                                    <input type="text" name="time" class="form-control appointment_time"
+                                        placeholder="Time">
                                 </div>
+                                @if ($errors->has('time'))
+                                    <span class="text-danger">{{ $errors->first('time') }}</span>
+                                @endif
                             </div>
+
+
+
+
                             <div class="form-group ml-md-4">
                                 <input type="text" name="phone" class="form-control" placeholder="Phone">
+                                @if ($errors->has('phone'))
+                                    <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                @endif
                             </div>
+
+
+
                         </div>
                         <div class="d-md-flex">
                             <div class="form-group">
                                 <textarea name="message" id="" cols="30" rows="2" class="form-control" placeholder="Message"></textarea>
                             </div>
 
-                        <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
+                            <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
 
                             <div class="form-group ml-md-4">
                                 <input type="submit" name="submit" value="Book" class="btn btn-white py-3 px-4">
@@ -243,22 +277,26 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="menu-entry">
-                                <a href="#" class="img" style="background-image: url({{ asset('assets/images/menu-1.jpg') }});"></a>
+                                <a href="#" class="img"
+                                    style="background-image: url({{ asset('assets/images/menu-1.jpg') }});"></a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="menu-entry mt-lg-4">
-                                <a href="#" class="img" style="background-image: url({{ asset('assets/images/menu-2.jpg') }});"></a>
+                                <a href="#" class="img"
+                                    style="background-image: url({{ asset('assets/images/menu-2.jpg') }});"></a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="menu-entry">
-                                <a href="#" class="img" style="background-image: url({{ asset('assets/images/menu-3.jpg') }});"></a>
+                                <a href="#" class="img"
+                                    style="background-image: url({{ asset('assets/images/menu-3.jpg') }});"></a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="menu-entry mt-lg-4">
-                                <a href="#" class="img" style="background-image: url({{ asset('assets/images/menu-4.jpg') }});"></a>
+                                <a href="#" class="img"
+                                    style="background-image: url({{ asset('assets/images/menu-4.jpg') }});"></a>
                             </div>
                         </div>
                     </div>
@@ -267,8 +305,8 @@
         </div>
     </section>
 
-    <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url({{ asset('assets/images/bg_2.jpg') }});"
-        data-stellar-background-ratio="0.5">
+    <section class="ftco-counter ftco-bg-dark img" id="section-counter"
+        style="background-image: url({{ asset('assets/images/bg_2.jpg') }});" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row justify-content-center">
@@ -331,17 +369,19 @@
                 {{-- loop through products --}}
                 @foreach ($products as $product)
                     <div class="col-md-3">
-                    <div class="menu-entry">
-                        <a href="#" class="img" style="background-image: url({{ asset('assets/images/'.$product->image.'') }});"></a>
-                        <div class="text text-center pt-4">
-                            <h3><a href="{{ route('product.single', $product->id) }}">{{ $product->name }}</a></h3>
-                            <p>{{ $product->description }}</p>
-                            <p class="price"><span>₱{{ $product->price }}</span></p>
-                            <p><a href="{{ route('product.single', $product->id) }}" class="btn btn-primary btn-outline-primary">Show</a>
-                            </p>
+                        <div class="menu-entry">
+                            <a href="#" class="img"
+                                style="background-image: url({{ asset('assets/images/' . $product->image . '') }});"></a>
+                            <div class="text text-center pt-4">
+                                <h3><a href="{{ route('product.single', $product->id) }}">{{ $product->name }}</a></h3>
+                                <p>{{ $product->description }}</p>
+                                <p class="price"><span>₱{{ $product->price }}</span></p>
+                                <p><a href="{{ route('product.single', $product->id) }}"
+                                        class="btn btn-primary btn-outline-primary">Show</a>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
 
 
@@ -389,8 +429,8 @@
         </div>
     </section>
 
-    <section class="ftco-section img" id="ftco-testimony" style="background-image: url({{ asset('assets/images/bg_1.jpg') }});"
-        data-stellar-background-ratio="0.5">
+    <section class="ftco-section img" id="ftco-testimony"
+        style="background-image: url({{ asset('assets/images/bg_1.jpg') }});" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row justify-content-center mb-5">
