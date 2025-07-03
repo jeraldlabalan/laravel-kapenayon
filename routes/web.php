@@ -38,5 +38,8 @@ Route::get('products/pay', [App\Http\Controllers\Products\ProductsController::cl
 // Success Route after Payment
 Route::get('products/success', [App\Http\Controllers\Products\ProductsController::class, 'success'])->name('products.pay.success')->middleware('check.for.price');
 
-
+// Booking Route
 Route::post('products/booking', [App\Http\Controllers\Products\ProductsController::class, 'bookTables'])->name('booking.tables');
+
+// Menu Page Route
+Route::get('products/menu', [App\Http\Controllers\Products\ProductsController::class, 'menu'])->name('products.menu');
