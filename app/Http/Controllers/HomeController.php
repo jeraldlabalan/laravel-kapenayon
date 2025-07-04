@@ -35,4 +35,28 @@ class HomeController extends Controller
         return view('home', compact('products', 'reviews'));
 
     }
+
+    public function services()
+    {
+
+
+        return view('pages.services');
+
+    }
+
+    public function contact()
+    {
+
+
+        return view('pages.contact');
+
+    }
+
+    public function about()
+    {
+
+
+        return view('pages.about');
+
+    }
 }
