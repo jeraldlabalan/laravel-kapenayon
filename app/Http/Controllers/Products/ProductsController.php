@@ -19,7 +19,7 @@ class ProductsController extends Controller
     // This method retrieves a single product by its ID
     public function singleProduct($id)
     {
-        // Fetch the product by ID from the database
+         // Fetch the product by ID from the database
         $product = Product::find($id);
 
         // Show related products based on type
@@ -28,14 +28,21 @@ class ProductsController extends Controller
             ->take(4) // Limit to 4 related products
             ->orderBy('id', 'desc')
             ->get();
+        if(isset(Auth::user()->id))
+        {
 
 
             // Check if the product is already in the user's cart
             $checkingInCart = Cart::where('product_id', $id)->where('user_id', Auth::user()->id)->count();
+            // Return the view with the product data
+            return view('products.productsingle', compact('product', 'relatedProducts', 'checkingInCart'));
+        } else
+            {
+                return view('products.productsingle', compact('product', 'relatedProducts'));
 
-        // Return the view with the product data
-        return view('products.productsingle', compact('product', 'relatedProducts', 'checkingInCart'));
-    }
+            }
+
+        }
 
     // This method handles adding a product to the cart
     public function addCart(Request $request, $id)

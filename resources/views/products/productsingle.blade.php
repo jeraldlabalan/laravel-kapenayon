@@ -80,11 +80,16 @@
                         <input type="hidden" value="{{ $product->price }}" name="price" id="">
                         <input type="hidden" value="{{ $product->image }}" name="image" id="">
 
-                        @if($checkingInCart == 0)
-                            <button type="submit" name="submit" class="btn btn-primary py-3 px-5">Add to Cart</button>
-                        @else
-                            <button type="button" class="btn btn-secondary py-3 px-5" disabled>Already in Cart</button>
+                        @if(isset(Auth::user()->id))
+                             @if($checkingInCart == 0)
+                                <button type="submit" name="submit" class="btn btn-primary py-3 px-5">Add to Cart</button>
+                            @else
+                                <button type="button" class="btn btn-secondary py-3 px-5" disabled>Already in Cart</button>
+                            @endif
                         @endif
+
+
+
                     </form>
                 </div>
             </div>
