@@ -7,12 +7,13 @@ use App\Models\Product\Product;
 use App\Models\Product\Booking;
 use App\Models\Product\Order;
 use App\Models\Admin\Admin;
+use Illuminate\Support\Facades\Hash;
 use Auth;
+use Redirect;
 
 class AdminsController extends Controller
 {
-    //    <?php
-    // ...existing code...
+
 
     public function logout(Request $request)
     {
@@ -21,7 +22,7 @@ class AdminsController extends Controller
         $request->session()->regenerateToken();
         return redirect()->route('view.login');
     }
-    // ...existing code...
+
 
     public function viewLogin()
     {
@@ -29,7 +30,8 @@ class AdminsController extends Controller
         return view('admins.login');
     }
 
-    public function checkLogin(Request $request) {
+    public function checkLogin(Request $request)
+    {
 
         $remember_me = $request->has('remember_me') ? true : false;
 
@@ -58,5 +60,38 @@ class AdminsController extends Controller
 
 
     }
+
+    public function createAdmins()
+    {
+
+
+        return view('admins.createadmins');
+
+
+    }
+
+
+    public function storeAdmins(Request $request)
+    {
+
+        $storeAdmins = Admin::Create([
+            "name" => $request->name,
+            "email" => $request->email,
+            "password" => Hash::make($request->password),
+        ]);
+
+        if($storeAdmins) {
+            return Redirect::route('all.admins')->with(['success' => 'Admin created successfully!']);
+
+        }
+
+
+
+
+    }
+
+
+
+
 
 }
