@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Admins;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product\Product;
+use App\Models\Product\Booking;
+use App\Models\Product\Order;
+use App\Models\Admin\Admin;
 use Auth;
 
 class AdminsController extends Controller
@@ -38,8 +42,12 @@ class AdminsController extends Controller
 
     public function index()
     {
+        $productsCount = Product::select()->count();
+        $ordersCount = Order::select()->count();
+        $bookingsCount = Booking::select()->count();
+        $adminsCount = Admin::select()->count();
 
-        return view('admins.index');
+        return view('admins.index', compact('productsCount', 'ordersCount', 'bookingsCount', 'adminsCount'));
     }
 
 
