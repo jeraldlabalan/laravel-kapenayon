@@ -80,6 +80,9 @@ Route::group(['prefix' => 'users'], function () {
 
 Route::get('admin/login', [App\Http\Controllers\Admins\AdminsController::class, 'viewLogin'])->name('view.login')->middleware('check.for.auth');
 Route::post('admin/login', [App\Http\Controllers\Admins\AdminsController::class, 'checkLogin'])->name('check.login');
+Route::post('admin/logout', [App\Http\Controllers\Admins\AdminsController::class, 'logout'])->name('admin.logout');
+
+
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
 

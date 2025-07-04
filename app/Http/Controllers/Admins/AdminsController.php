@@ -3,10 +3,22 @@
 namespace App\Http\Controllers\Admins;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Auth;
 
 class AdminsController extends Controller
 {
-    //
+    //    <?php
+    // ...existing code...
+
+    public function logout(Request $request)
+    {
+        auth()->guard('admin')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('view.login');
+    }
+    // ...existing code...
+
     public function viewLogin()
     {
         // Return the admin login view
