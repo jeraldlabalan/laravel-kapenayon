@@ -31,11 +31,11 @@
                                 <tr class="text-center">
                                     <th>First Name</th>
                                     <th>Last Name</th>
-                                    <th>Address</th>
                                     <th>City</th>
                                     <th>Email</th>
                                     <th>Price</th>
                                     <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -52,10 +52,6 @@
                                             </td>
 
                                             <td class="">
-                                                {{ substr($order->address, 0, 30) }}
-                                            </td>
-
-                                            <td class="">
                                                 {{ $order->city }}
                                             </td>
 
@@ -69,6 +65,14 @@
 
                                             <td class="">
                                                 {{ $order->status }}
+                                            </td>
+
+                                            <td class="">
+                                                @if ($order->status == "Delivered")
+                                                    <a class="btn btn-primary" href="{{ route('write.reviews') }}">Review</a>
+                                                @else
+                                                    <p class="text-black">Can't review yet.</p>
+                                                @endif
                                             </td>
                                         </tr><!-- END TR-->
                                     @endforeach

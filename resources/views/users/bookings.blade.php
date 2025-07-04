@@ -35,6 +35,7 @@
                                     <th>Time</th>
                                     <th>Phone</th>
                                     <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -65,6 +66,17 @@
                                             <td class="">
                                                 {{ $booking->status }}
                                             </td>
+
+                                            <td class="">
+                                                @if ($booking->status == "Booked")
+                                                    <a class="btn btn-primary" href="{{ route('write.reviews') }}">Review</a>
+                                                @else
+                                                    <p class="text-black">Can't review yet.</p>
+                                                @endif
+                                            </td>
+
+
+
                                         </tr><!-- END TR-->
                                     @endforeach
                                 @else
