@@ -50,5 +50,13 @@ class AdminsController extends Controller
         return view('admins.index', compact('productsCount', 'ordersCount', 'bookingsCount', 'adminsCount'));
     }
 
+    public function displayAllAdmins()
+    {
+        $allAdmins = Admin::select()->orderBy('id', 'asc')->get();
+
+        return view('admins.alladmins', compact('allAdmins'));
+
+
+    }
 
 }
