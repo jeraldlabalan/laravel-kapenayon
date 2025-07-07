@@ -122,6 +122,17 @@ class AdminsController extends Controller
         }
     }
 
+    public function deleteOrder($id)
+    {
+        $order = Order::find($id);
+
+        $order->delete();
+
+        if($order) {
+            return Redirect::route('all.orders')->with(['delete' => 'Order deleted successfully!']);
+        }
+    }
+
 }
 
 

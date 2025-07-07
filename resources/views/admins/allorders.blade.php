@@ -17,6 +17,16 @@
                 </div>
             @endif
 
+            {{-- Success Message --}}
+            @if (Session::has('delete'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Success!</strong> {{ Session::get('delete') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
               <h5 class="card-title mb-4 d-inline">Orders</h5>
 
               <table class="table">
@@ -47,7 +57,7 @@
                         <td>${{ $order->price }}</td>
                         <td>{{ $order->status }}</td>
                         <td><a href="{{ route('edit.order', $order->id) }}" class="btn btn-warning text-white  text-center ">change status</a></td>
-                        <td><a href="delete-orders.html" class="btn btn-danger  text-center ">delete</a></td>
+                        <td><a href="{{ route('delete.order', $order->id) }}" class="btn btn-danger  text-center ">delete</a></td>
 
                     </tr>
                     @endforeach
