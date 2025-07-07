@@ -10,6 +10,7 @@ use App\Models\Admin\Admin;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 use Redirect;
+use File;
 
 class AdminsController extends Controller
 {
@@ -169,6 +170,24 @@ class AdminsController extends Controller
         if($storeProduct) {
             return Redirect::route('all.products')->with(['success' => 'Product created successfully!']);
 
+        }
+
+    }
+
+    public function deleteProduct($id)
+    {
+        $product = Product::find($id);
+
+        if(File::exists(public_path('assets/images/' . $product->image))){
+            File::delete(public_path('assets/images/' . $product->image));
+        }else{
+            //dd('File does not exists.');
+        }
+
+        $product->delete();
+
+        if($product) {
+            return Redirect::route('all.products')->with(['delete' => 'Product deleted successfully!']);
         }
 
     }

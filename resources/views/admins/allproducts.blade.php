@@ -12,6 +12,17 @@
                     </button>
                 </div>
             @endif
+
+
+            {{-- Success Message --}}
+            @if (Session::has('delete'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Success!</strong> {{ Session::get('delete') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title mb-4 d-inline">Kapenayon Products</h5>
@@ -37,7 +48,7 @@
                                     <td><img src="{{ asset('assets/images/'. $product->image . '') }}" alt="{{ $product->name }}" width="70" height="50" ></td>
                                     <td>${{ $product->price }}</td>
                                     <td>{{ $product->type }}</td>
-                                    <td><a href="#" class="btn btn-danger  text-center ">delete</a></td>
+                                    <td><a href="{{ route('delete.product', $product->id) }}" class="btn btn-danger  text-center ">delete</a></td>
                                 </tr>
                             @endforeach
 

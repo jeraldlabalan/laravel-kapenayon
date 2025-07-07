@@ -115,6 +115,8 @@ Route::get('create-products', [App\Http\Controllers\Admins\AdminsController::cla
 
 Route::post('create-products', [App\Http\Controllers\Admins\AdminsController::class, 'storeProduct'])->name('store.product');
 
+Route::get('delete-products/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'deleteProduct'])->name('delete.product');
+
 
 });
 
