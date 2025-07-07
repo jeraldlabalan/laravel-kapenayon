@@ -73,6 +73,12 @@ class AdminsController extends Controller
 
     public function storeAdmins(Request $request)
     {
+        // Validate the request data
+        Request()->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'password' => 'required|string|min:8',
+        ]);
 
         $storeAdmins = Admin::Create([
             "name" => $request->name,
@@ -85,13 +91,41 @@ class AdminsController extends Controller
 
         }
 
+    }
+
+    public function displayAllOrders()
+    {
+        $allOrders = Order::select()->orderBy('id', 'asc')->get();
+
+        return view('admins.allorders', compact('allOrders'));
 
 
 
     }
 
+    public function editOrder($id)
+    {
+        $order = Order::find($id);
 
 
+        return view('admins.editorder', compact('order'));
+    }
 
+    public function updateOrder(Request $request,$id)
+    {
+        $order = Order::find($id);
+
+        $order->update($request->all());
+
+        if($order) {
+            return Redirect::route('all.orders')->with(['update' => 'Order status updated successfully!']);
+        }
+    }
 
 }
+
+
+
+
+
+

@@ -96,6 +96,13 @@ Route::get('create-admins', [App\Http\Controllers\Admins\AdminsController::class
 
 Route::post('create-admins', [App\Http\Controllers\Admins\AdminsController::class, 'storeAdmins'])->name('store.admins');
 
+Route::get('all-orders', [App\Http\Controllers\Admins\AdminsController::class, 'displayAllOrders'])->name('all.orders');
+
+Route::get('edit-order/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'editOrder'])->name('edit.order');
+
+Route::post('edit-order/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'updateOrder'])->name('update.order');
+
+
 
 });
 
