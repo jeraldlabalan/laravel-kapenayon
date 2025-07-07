@@ -133,6 +133,45 @@ class AdminsController extends Controller
         }
     }
 
+    public function displayAllProducts()
+    {
+        $products = Product::select()->orderBy('id', 'asc')->get();
+
+        return view('admins.allproducts', compact('products'));
+    }
+
+    public function createProduct()
+    {
+        return view('admins.createproduct');
+    }
+
+    public function storeProduct(Request $request)
+    {
+        // Validate the request data
+        // Request()->validate([
+        //     'name' => 'required|string|max:255',
+        //     'email' => 'required|string|max:255',
+        //     'password' => 'required|string|min:8',
+        // ]);
+
+        $destinationPath = 'assets/images/';
+        $myimage = $request->image->getClientOriginalName();
+        $request->image->move(public_path($destinationPath), $myimage);
+
+        $storeProduct = Product::Create([
+            "name" => $request->name,
+            "price" => $request->price,
+            "image" => $myimage,
+            "description" => $request->description,
+            "type" => $request->type,
+        ]);
+
+        if($storeProduct) {
+            return Redirect::route('all.products')->with(['success' => 'Product created successfully!']);
+
+        }
+
+    }
 }
 
 

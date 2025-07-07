@@ -104,5 +104,17 @@ Route::post('edit-order/{id}', [App\Http\Controllers\Admins\AdminsController::cl
 
 
 Route::get('delete-order/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'deleteOrder'])->name('delete.order');
+
+
+
+// products section
+
+Route::get('all-products', [App\Http\Controllers\Admins\AdminsController::class, 'displayAllProducts'])->name('all.products');
+
+Route::get('create-products', [App\Http\Controllers\Admins\AdminsController::class, 'createProduct'])->name('create.product');
+
+Route::post('create-products', [App\Http\Controllers\Admins\AdminsController::class, 'storeProduct'])->name('store.product');
+
+
 });
 
