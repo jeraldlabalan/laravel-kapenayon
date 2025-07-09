@@ -1,8 +1,13 @@
-// Fonts
+// ✅ 1. Fonts (can stay, it's CSS)
 @import url('https://fonts.bunny.net/css?family=Nunito');
 
-// Variables
-@import 'variables';
+// ✅ 2. Sass variables (your custom file, keep it above Bootstrap)
+@import 'variables'; // ← NOTE: use @import, not @use
 
-// Bootstrap
+// ✅ 3. Bootstrap (must use @import for now)
 @import 'bootstrap/scss/bootstrap';
+
+// ✅ 4. Your custom styles
+body {
+  font-family: 'Nunito', sans-serif;
+}

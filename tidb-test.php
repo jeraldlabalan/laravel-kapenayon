@@ -1,7 +1,7 @@
 <?php
 $host = "gateway01.ap-southeast-1.prod.aws.tidbcloud.com";
 $port = 4000;
-$dbname = "test";
+$dbname = "kapenayon";
 $username = "3gsHKM5GuBJ7xn9.root";
 $password = "87A2LUVDgit1mARk";
 $ssl_ca_path = __DIR__ . "/ca.pem"; // make sure ca.pem is in the same folder
@@ -19,4 +19,3 @@ try {
 } catch (PDOException $e) {
     echo "❌ Connection failed: " . $e->getMessage();
 }
-?>
