@@ -16,7 +16,8 @@ class Booking extends Model
         'time',
         'phone',
         'message',
-        'user_id'
+        'user_id',
+        'status',
     ];
 
     public $timestamps = true;

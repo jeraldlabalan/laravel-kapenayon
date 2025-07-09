@@ -3,6 +3,25 @@
 @section('content')
     <div class="row">
         <div class="col">
+            {{-- Success Message --}}
+            @if (Session::has('update'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Success!</strong> {{ Session::get('update') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
+            {{-- Success Delete Message --}}
+            @if (Session::has('delete'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Success!</strong> {{ Session::get('delete') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
           <div class="card">
             <div class="card-body">
               <h5 class="card-title mb-4 d-inline">Bookings</h5>
@@ -36,9 +55,9 @@
                         <td>{{ $booking->message }}</td>
                         <td>{{ $booking->status }}</td>
                         <td>{{ $booking->created_at }}</td>
-                        <td><a href="#" class="btn btn-warning  text-center ">change status</a></td>
+                        <td><a href="{{ route('edit.booking', $booking->id) }}" class="btn btn-warning  text-center ">change status</a></td>
 
-                        <td><a href="delete-bookings.html" class="btn btn-danger  text-center ">delete</a></td>
+                        <td><a href="{{ route('delete.booking', $booking->id) }}" class="btn btn-danger  text-center ">delete</a></td>
                       </tr>
                     @endforeach
 

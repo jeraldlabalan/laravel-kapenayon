@@ -200,6 +200,40 @@ class AdminsController extends Controller
         return view('admins.allbookings', compact('bookings'));
     }
 
+    public function editBooking($id)
+    {
+        $booking = Booking::find($id);
+
+        return view('admins.editbooking', compact('booking'));
+    }
+
+    public function updateBooking(Request $request,$id)
+    {
+        $booking = Booking::find($id);
+
+        $booking->update($request->all());
+
+        if($booking) {
+            return Redirect::route('all.bookings')->with(['update' => 'Booking status updated successfully!']);
+        }
+    }
+
+    public function deleteBooking($id)
+    {
+        $booking = Booking::find($id);
+
+
+        $booking->delete();
+
+
+        // if deleted successfully, return to all bookings page with success message
+        if($booking) {
+            return Redirect::route('all.bookings')->with(['delete' => 'Booking deleted successfully!']);
+        }
+
+    }
+
+
 
 
 
