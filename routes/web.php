@@ -117,6 +117,10 @@ Route::post('create-products', [App\Http\Controllers\Admins\AdminsController::cl
 
 Route::get('delete-products/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'deleteProduct'])->name('delete.product');
 
+// Bookings Section
+
+Route::get('all-bookings', [App\Http\Controllers\Admins\AdminsController::class, 'displayBookings'])->name('all.bookings');
+
 
 });
 

@@ -43,7 +43,7 @@
                                     style="margin-left: 20px;">Products</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"
+                                <a class="nav-link" href="{{ route('all.bookings') }}"
                                     style="margin-left: 20px;">Bookings</a>
                         </li>
                     </ul>
